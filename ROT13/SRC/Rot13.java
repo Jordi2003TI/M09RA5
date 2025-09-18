@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Rot13 {
 
     // Variables globales
@@ -13,7 +11,7 @@ public class Rot13 {
     //String[] listaPrueba = ["hola", "Jaume", "Apruebame", "Jordi Masip Ibañez"]; // para poder hacer las pruebas del profe
 
     // Cifrar String
-    String cifradoString = xifratRot13("HolA que hace");
+    String cifradoString = xifratRot13("HolA que hace ??? ¡¡¡¡ ...");
     System.out.println("Texto cifrado: " + cifradoString);
 
     String descifradoString = desxifratRot13(cifradoString);
@@ -24,15 +22,23 @@ public class Rot13 {
         String cadenaCifradaMin = "";
         for(int i = 0; i < cadena.length(); i++){
             char c = cadena.charAt(i);
+            boolean encontrado = false;
             for(int j = 0; j < abdArray.length; j++){ // Aprovechamos que son igual de largos
                 if(c == abdArray[j]){
                     cadenaCifradaMin += abdArray[(j + 13 ) % abdArray.length];
+                    encontrado = true;
+                    break;
                 }else if(c == ABDArray[j]){
                     cadenaCifradaMin += ABDArray[(j + 13 ) % ABDArray.length];
-                }else{
-                    cadenaCifradaMin += c;
+                    encontrado = true;
+                    break;
                 }
             }
+            // Cuando hay un espcacio o un caracter difrente a una de las letras
+            if(!encontrado){
+                cadenaCifradaMin += c;
+            }
+            
         }
         return cadenaCifradaMin;
     }
