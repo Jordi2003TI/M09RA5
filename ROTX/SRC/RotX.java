@@ -9,34 +9,43 @@
 public class RotX {
 
     // Variables globales
-    static final String abd = "aàábcdeèéfghiíìjklmnoòópqrstùúvwxyz";
-    static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZ";
+    static final String abd = "aàábcdeèéfghiíìjklmnoòópqrstùúvwxyzçñ";
+    static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZÇÑ";
+    static final int numeroMaxCifrado = 39;
 
     static char[] abdArray = abd.toCharArray();
     static char[] ABDArray = ABD.toCharArray();
 
     public static void main(String[] args){
-    String[] listaPrueba = {"hola", "Jaume", "Apruebame", "Jordi Masip Ibañez", "Tengo 22 años"}; // para poder hacer las pruebas del profe
+    String[] listaPrueba = {"hola", "Jaume?", "Apruebame", "Jordi Masip Ibañez", "Tengo 22 años"}; // para poder hacer las pruebas del profe
+    String[] listaPruebaDescifrar = {"hola", "Láuoé?", "Ctúugècóg", "Òswhm Qexmú Mfedib", "Çìtmù 22 éèùz"};
+    String[] listaXifrat = {"Òswhm Qexmú Mfedib"};
+    System.out.println("Xifrat\n------");
+    for(int i = 0; i < listaPrueba.length; i++){
+        for(int y = i; y < listaPrueba.length; y++){
+            System.out.printf("(%d)%-30s \t => %-30s\n", i*2, listaPrueba[y], xifratRotX(listaPrueba[y], (i*2)));
+            break;
+        }
 
-
-    for(String element : listaPrueba){
-        String cifrado = xifratRot13(element);
-        System.out.println("El texto cidrado es " + cifrado);
-        String desCifrado = desxifratRot13(cifrado);
-        System.out.println("El texto descifrado " + desCifrado);
-        System.out.println();
     }
-    /* 
-    // Cifrar String
-    String cifradoString = xifratRot13("HolA que hace ??? ¡¡¡¡ ...");
-    System.out.println("Texto cifrado: " + cifradoString);
+    System.out.println();
+    System.out.println("Desxifrat\n------");
+    for(int i = 0; i < listaPruebaDescifrar.length; i++){
+        for(int y = i; y < listaPruebaDescifrar.length; y++){
+            System.out.printf("(%d)%-30s \t => %-30s\n", i*2, listaPruebaDescifrar[y], desxifratRotX(listaPruebaDescifrar[y], (i*2)));
+            break;
+        }
 
-    String descifradoString = desxifratRot13(cifradoString);
-    System.out.println("Texto descifrado " + descifradoString);
-    */
+    }
+    System.out.println();
+    for(int i = 0; i <= numeroMaxCifrado; i++){
+        for(int y = 0; y < listaXifrat.length; y++){
+            
+        }
+    }
     }
 
-    public static String xifratRot13(String cadena){
+    public static String xifratRotX(String cadena, int desplaçament){
         // Pasar A cifrado
         String cadenaCifradaMin = "";
         for(int i = 0; i < cadena.length(); i++){
@@ -44,11 +53,11 @@ public class RotX {
             boolean encontrado = false;
             for(int j = 0; j < abdArray.length; j++){ // Aprovechamos que son igual de largos
                 if(c == abdArray[j]){
-                    cadenaCifradaMin += abdArray[(j + 13 ) % abdArray.length]; // Sirve para poder reinciar el indice de la array a traves de un calculo
+                    cadenaCifradaMin += abdArray[(j + desplaçament ) % abdArray.length]; // Sirve para poder reinciar el indice de la array a traves de un calculo
                     encontrado = true;
                     break;
                 }else if(c == ABDArray[j]){
-                    cadenaCifradaMin += ABDArray[(j + 13 ) % ABDArray.length];
+                    cadenaCifradaMin += ABDArray[(j + desplaçament ) % ABDArray.length];
                     encontrado = true;
                     break;
                 }
@@ -62,7 +71,7 @@ public class RotX {
         return cadenaCifradaMin;
     }
 
-    public static String desxifratRot13(String cadena){
+    public static String desxifratRotX(String cadena, int desplaçament){
 
         String cadenaCifradaMin = "";
         for(int i = 0; i < cadena.length(); i++){
@@ -70,11 +79,11 @@ public class RotX {
             boolean encontrado = false;
             for(int j = 0; j < abdArray.length; j++){ 
                 if(c == abdArray[j]){
-                    cadenaCifradaMin += abdArray[(j - 13 + abdArray.length ) % abdArray.length]; // Ponemos que sume la array porque sino nos da un valor negativo y esto haria que nunca lo eocntrarse
+                    cadenaCifradaMin += abdArray[(j - desplaçament + abdArray.length ) % abdArray.length]; // Ponemos que sume la array porque sino nos da un valor negativo y esto haria que nunca lo eocntrarse
                     encontrado = true;
                     break;
                 }else if(c == ABDArray[j]){
-                    cadenaCifradaMin += ABDArray[(j - 13 + ABDArray.length) % ABDArray.length];
+                    cadenaCifradaMin += ABDArray[(j - desplaçament + ABDArray.length) % ABDArray.length];
                     encontrado = true;
                     break;
                 }
@@ -86,5 +95,9 @@ public class RotX {
             
         }
         return cadenaCifradaMin;
+    }
+
+    public static void forcaBrutaRotX(String cadenaXifrada){
+        
     }
 }
