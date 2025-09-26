@@ -11,7 +11,7 @@ public class RotX {
     // Variables globales
     static final String abd = "aàábcdeèéfghiíìjklmnoòópqrstùúvwxyzçñ";
     static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZÇÑ";
-    static final int numeroMaxCifrado = 39;
+    static final int numeroMaxCifrado = abd.length();
     static int contador = 0;
 
     static char[] abdArray = abd.toCharArray();
