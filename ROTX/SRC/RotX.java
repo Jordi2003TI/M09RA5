@@ -12,6 +12,7 @@ public class RotX {
     static final String abd = "aàábcdeèéfghiíìjklmnoòópqrstùúvwxyzçñ";
     static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZÇÑ";
     static final int numeroMaxCifrado = 39;
+    static int contador = 0;
 
     static char[] abdArray = abd.toCharArray();
     static char[] ABDArray = ABD.toCharArray();
@@ -19,7 +20,7 @@ public class RotX {
     public static void main(String[] args){
     String[] listaPrueba = {"hola", "Jaume?", "Apruebame", "Jordi Masip Ibañez", "Tengo 22 años"}; // para poder hacer las pruebas del profe
     String[] listaPruebaDescifrar = {"hola", "Láuoé?", "Ctúugècóg", "Òswhm Qexmú Mfedib", "Çìtmù 22 éèùz"};
-    String[] listaXifrat = {"Òswhm Qexmú Mfedib"};
+    String[] listaXifrat = {"Òswhm Qexmú Mfedib","Ctúugècóg", "Láuoé?"};
 
 
     System.out.println("Xifrat\n------");
@@ -41,13 +42,15 @@ public class RotX {
     }
     System.out.println();
     for(int a = 0; a < listaXifrat.length; a++){
+        if(a >= 1){
+            System.out.println();
+        }
         System.out.println("Missatge xifrat: " + listaXifrat[a]);
         System.out.println("----------------");
         for(int i = 0; i <= numeroMaxCifrado; i++){
-            for(int y = 0; y < listaXifrat.length; y++){
-                System.out.println("(" + i +")->" + forcaBrutaRotX());
-            }
+            forcaBrutaRotX(listaXifrat[a]);
         }
+    System.out.println();
     }
     }
 
@@ -105,16 +108,16 @@ public class RotX {
 
     public static void forcaBrutaRotX(String cadenaXifrada){
         String cadenaCifradaMin = "";
-        for(int i = 0; i < cadena.length(); i++){
-            char c = cadena.charAt(i);
+        for(int i = 0; i < cadenaXifrada.length(); i++){
+            char c = cadenaXifrada.charAt(i);
             boolean encontrado = false;
             for(int j = 0; j < abdArray.length; j++){ 
                 if(c == abdArray[j]){
-                    cadenaCifradaMin += abdArray[(j - desplaçament + abdArray.length ) % abdArray.length]; // Ponemos que sume la array porque sino nos da un valor negativo y esto haria que nunca lo eocntrarse
+                    cadenaCifradaMin += abdArray[(j - contador + abdArray.length ) % abdArray.length]; // Ponemos que sume la array porque sino nos da un valor negativo y esto haria que nunca lo eocntrarse
                     encontrado = true;
                     break;
                 }else if(c == ABDArray[j]){
-                    cadenaCifradaMin += ABDArray[(j - desplaçament + ABDArray.length) % ABDArray.length];
+                    cadenaCifradaMin += ABDArray[(j - contador + ABDArray.length) % ABDArray.length];
                     encontrado = true;
                     break;
                 }
@@ -125,6 +128,13 @@ public class RotX {
             }
             
         }
-        System.err.println(cadenaCifradaMin);
+        
+        System.out.println();
+        System.out.printf("(%d)->%s", contador,cadenaCifradaMin);
+        if(contador >= numeroMaxCifrado){
+            contador = 0;
+        }else{
+            contador++;
+        }
     }
 }
