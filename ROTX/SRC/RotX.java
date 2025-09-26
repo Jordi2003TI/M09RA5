@@ -1,9 +1,8 @@
 /*
  * M9 Jaume 
- * DIA: 18/09/2025
+ * DIA: 26/09/2025
  * Jordi Masip Ibañez
- * Es un ejercicio que esta pensado para poder cifrar cadenas de String conservando los espacios y caracteres que no sean letras. 
- * Tenemos que poder descifrar tambien el mismo mensaje que hemos cifrado
+ * Es una practica mejorada de la anterior de cifrar en esta lo que hacemos es darle un indice para que cifre segun el que le pasemos y haceos uno a fuerza bruta
  */
 
 public class RotX {
