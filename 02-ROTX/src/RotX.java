@@ -3,6 +3,7 @@
  * DIA: 26/09/2025
  * Jordi Masip Ibañez
  * Es una practica mejorada de la anterior de cifrar en esta lo que hacemos es darle un indice para que cifre segun el que le pasemos y haceos uno a fuerza bruta
+ * JAUME SI VES QUE NO HIZE EL COMMIT EN CLASE ES PORQUE HE CAMBIADO DE NOMBRE DE LA CARPETA LA HE BORRADO Y CREADO OTRA Y NO SE SI SE VERA REFLEJADO
  */
 
 public class RotX {
