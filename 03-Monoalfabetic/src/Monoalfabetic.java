@@ -16,8 +16,18 @@ public class Monoalfabetic{
 
         ArraypPermutada = permutaAlfabet(ABDARRAY);
 
-
+        String[] pruebas = {"Hola me llamo Jordi y tengo 23 años", "123  toca la pared", "nomo de yardin"};
         
+        System.out.println("Alfabeto normal ");
+        for(int i = 0; i < ABDARRAY.length; i++){
+            System.out.println();
+        }
+        for(int i = 0; i < pruebas.length; i++){
+            String prueba = pruebas[i];
+            
+        }
+
+
         System.out.println(ABDARRAY);
         System.out.println(ArraypPermutada);
 
