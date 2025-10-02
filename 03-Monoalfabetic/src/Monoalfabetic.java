@@ -15,6 +15,9 @@ public class Monoalfabetic{
     public static void main(String[] args) {
 
         ArraypPermutada = permutaAlfabet(ABDARRAY);
+
+
+        
         System.out.println(ABDARRAY);
         System.out.println(ArraypPermutada);
 
