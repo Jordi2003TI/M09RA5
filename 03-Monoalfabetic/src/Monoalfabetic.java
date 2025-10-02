@@ -21,6 +21,10 @@ public class Monoalfabetic{
         String cifrado = xifraMonoAlfa("OsAmA  !!!! que tal como 123");
         System.out.println(cifrado);
 
+        System.out.println();
+        String descifrado = desxifraMonoAlfa(cifrado);
+        System.out.println(descifrado);
+
     }
     // Para permutar un alfabeto
     public static char[] permutaAlfabet(char[] alfabeto){
@@ -62,9 +66,28 @@ public class Monoalfabetic{
         }
         return cifrada;
     }
-
+    // ABDARRAY // ArraypPermutada
     public static String desxifraMonoAlfa(String cadena){
-        
-        return null;
+        String cifrada = "";
+        for(int i = 0; i < cadena.length(); i++){
+            boolean EsLetra= false;
+            char c = cadena.charAt(i);
+            for(int y = 0; y < ArraypPermutada.length; y++){
+                if(Character.toUpperCase(c) == ArraypPermutada[y]){
+                    if(Character.isLowerCase(c)){
+                        cifrada += Character.toLowerCase(ABDARRAY[y]);
+                        EsLetra = true;
+                    }else{
+                        cifrada += Character.toUpperCase(ABDARRAY[y]);
+                        EsLetra = true;
+                    }          
+                }
+            }
+            if(!EsLetra){
+                cifrada += c;
+                continue;
+            }
+        }
+        return cifrada;
     }
 }
