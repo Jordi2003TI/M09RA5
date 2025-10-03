@@ -1,7 +1,7 @@
 /* 
- * 
- * 
- * 
+ * Es un ejercicio que consiste en permutar un alfabeto para luego poder cifrar un mensaje, se debe de conservar todo aquello que no sea un letra 
+ * Jordi Masip Ibañez
+ *  03/10/2025
 */
 import java.util.ArrayList;
 import java.util.Collections;
