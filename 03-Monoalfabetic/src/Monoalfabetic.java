@@ -20,23 +20,36 @@ public class Monoalfabetic{
         
         System.out.println("Alfabeto normal ");
         for(int i = 0; i < ABDARRAY.length; i++){
-            System.out.println();
-        }
-        for(int i = 0; i < pruebas.length; i++){
-            String prueba = pruebas[i];
+            Character c = ABDARRAY[i];
+            if(i <= ABDARRAY.length-2){
+                System.out.print(c + ", ");
+            }else{
+                System.out.print(c);
+                System.out.println();
+            }
             
         }
-
-
-        System.out.println(ABDARRAY);
-        System.out.println(ArraypPermutada);
-
-        String cifrado = xifraMonoAlfa("OsAmA  !!!! que tal como 123");
-        System.out.println(cifrado);
-
-        System.out.println();
-        String descifrado = desxifraMonoAlfa(cifrado);
-        System.out.println(descifrado);
+        System.out.println("Alfabeto permutado");
+        for(int i = 0; i < ArraypPermutada.length; i++){
+            Character c = ArraypPermutada[i];
+            if(i <= ArraypPermutada.length-2){
+                System.out.print(c + ", ");
+            }else{
+                System.out.print(c);
+                System.out.println();
+            }
+            
+        }
+        // For para puebas 
+        for(int i = 0; i < pruebas.length; i++){
+            System.out.println();
+            String prueba = pruebas[i];
+            String xifrat = xifraMonoAlfa(prueba);
+            System.out.println("MENSAJE CIFRADO: " + xifrat);
+            String desXifrat = desxifraMonoAlfa(xifrat);
+            System.out.println("MENSAJE DESCIFRADO: " + desXifrat);
+            
+        }
 
     }
     // Para permutar un alfabeto
