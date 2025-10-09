@@ -1,6 +1,7 @@
 /*
- * 
- * 
+ * Es un ejercico que necesitamso permutar cada letra del abecedario gracias al random y el shuffle 
+ * Jordi Masip(Tijeras) Ibañez
+ * 09/10/2025
 */
 import java.util.ArrayList;
 import java.util.Collections;
