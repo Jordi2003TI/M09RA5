@@ -8,7 +8,9 @@
     import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import java.nio.charset.StandardCharsets;
 import java.security.*;
+import java.util.Arrays;
 
     public class AES {
 
@@ -76,11 +78,34 @@ import java.security.*;
         byte[] combinar = new byte[iv.length + encrypted.length];
         System.arraycopy(iv, 0, combinar, 0, iv.length);
         System.arraycopy(encrypted, 0, combinar, iv.length, encrypted.length);
+        // return de iv+msgXifrat
         return combinar;
     }
 
-    private static String desxifraAES(byte[] bMsgXifrat, String password){
-        return "Hola";
+    private static String desxifraAES(byte[] bMsgXifrat, String password)throws Exception{
+        if(bMsgXifrat == null || bMsgXifrat.length <= MIDA_IV){
+            throw new IllegalArgumentException("Entrada inválida: no contiene IV + datos cifrados");
+        }
+
+        // Extraemos el IV 
+        byte[] ivLocal = Arrays.copyOfRange(bMsgXifrat, 0, MIDA_IV);
+
+        // Extraemos el resto del texto 
+        byte[] encrypted = Arrays.copyOfRange(bMsgXifrat, MIDA_IV, bMsgXifrat.length);
+
+
+        IvParameterSpec ivSpecLocal = new IvParameterSpec(ivLocal);
+
+        MessageDigest digest = MessageDigest.getInstance(ALGORISME_HASH);
+        byte[] hashPassword = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        SecretKeySpec secretKey = new SecretKeySpec(hashPassword, ALGORISME_XIFRAT);
+
+        Cipher cipher = Cipher.getInstance(FORMAT_AES);
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpecLocal);
+
+        byte[] descrytado = cipher.doFinal((encrypted));
+
+        return new String(descrytado, StandardCharsets.UTF_8);
     }
 
     private static IvParameterSpec InicializarParameterSpec() throws Exception{
