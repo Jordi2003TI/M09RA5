@@ -97,11 +97,32 @@ public class XifradorRotX implements Xifrador{
 
     @Override
     public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
-        throw new UnsupportedOperationException("Unimplemented method 'xifra'");
+        try{
+            int desplaçament = Integer.parseInt(clau);
+            if(desplaçament < 0){
+                throw new ClauNoSuportada("El despazamiento no puede ser negativo");
+            }
+            String resultado = xifratRotX(msg, desplaçament);
+            return new TextXifrat(resultado.getBytes());
+
+        } catch(NumberFormatException e){
+            throw new ClauNoSuportada("La clave tiene que ser un numero entero");
+        }
     }
 
     @Override
     public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
-        throw new UnsupportedOperationException("Unimplemented method 'desxifra'");
+        try{
+            int desplaçament = Integer.parseInt(clau);
+            if(desplaçament < 0){
+                throw new ClauNoSuportada("El despazamiento no puede ser negativo");
+            }
+
+            String resultadoCifrado = new String(xifrat.getBytes());
+            return desxifratRotX(resultadoCifrado, desplaçament);
+
+        } catch(NumberFormatException e){
+            throw new ClauNoSuportada("La clave tiene que ser un numero entero");
+        }
     }
 }

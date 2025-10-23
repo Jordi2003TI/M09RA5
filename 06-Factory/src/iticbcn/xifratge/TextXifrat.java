@@ -1,5 +1,6 @@
 package iticbcn.xifratge;
 import java.util.Arrays;
+import java.util.Base64;
 
 public class TextXifrat {
     private byte[] dades;
@@ -14,7 +15,7 @@ public class TextXifrat {
 
     @Override
     public String toString() {
-        return "TextXifrat [dades=" + Arrays.toString(dades) + "]";
+         return Base64.getEncoder().encodeToString(dades);
     }
 
     
