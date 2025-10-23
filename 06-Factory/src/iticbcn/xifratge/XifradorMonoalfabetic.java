@@ -80,7 +80,7 @@ public class XifradorMonoalfabetic implements Xifrador {
     @Override
     public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
         if (clau != null) {
-            throw new ClauNoSuportada("Aquest xifrador no admet cap clau.");
+            throw new ClauNoSuportada("no suporta clau != null");
         }
 
         String resultado = xifraMonoAlfa(msg);
@@ -89,7 +89,7 @@ public class XifradorMonoalfabetic implements Xifrador {
     @Override
     public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
         if (clau != null) {
-            throw new ClauNoSuportada("Aquest xifrador no admet cap clau.");
+            throw new ClauNoSuportada("no suporta clau != null");
         }
         return desxifraMonoAlfa(new String(xifrat.getBytes()));
     }
