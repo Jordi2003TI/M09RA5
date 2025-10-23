@@ -7,6 +7,9 @@ public class XifradorMonoalfabetic implements Xifrador {
     static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZÇÑ"; 
     static final char[] ABDARRAY = ABD.toCharArray();
     private char[] ArraypPermutada;
+
+
+
      // Para permutar un alfabeto
     public char[] permutaAlfabet(char[] alfabeto){
         List<Character> lista = new ArrayList<>();
@@ -73,6 +76,7 @@ public class XifradorMonoalfabetic implements Xifrador {
     }
     @Override
     public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
+        
         throw new UnsupportedOperationException("Unimplemented method 'xifra'");
     }
     @Override
