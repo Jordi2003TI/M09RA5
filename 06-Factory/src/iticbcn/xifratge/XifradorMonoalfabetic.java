@@ -8,6 +8,9 @@ public class XifradorMonoalfabetic implements Xifrador {
     static final char[] ABDARRAY = ABD.toCharArray();
     private char[] ArraypPermutada;
 
+    public XifradorMonoalfabetic(){
+        this.ArraypPermutada = permutaAlfabet(ABDARRAY);
+    }
 
 
      // Para permutar un alfabeto
@@ -76,11 +79,18 @@ public class XifradorMonoalfabetic implements Xifrador {
     }
     @Override
     public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'xifra'");
+        if (clau != null) {
+            throw new ClauNoSuportada("Aquest xifrador no admet cap clau.");
+        }
+
+        String resultado = xifraMonoAlfa(msg);
+        return new TextXifrat(resultado.getBytes());
     }
     @Override
     public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
-        throw new UnsupportedOperationException("Unimplemented method 'desxifra'");
+        if (clau != null) {
+            throw new ClauNoSuportada("Aquest xifrador no admet cap clau.");
+        }
+        return desxifraMonoAlfa(new String(xifrat.getBytes()));
     }
 }
