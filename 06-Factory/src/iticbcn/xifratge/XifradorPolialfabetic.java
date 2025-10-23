@@ -1,18 +1,18 @@
-package iticbcn.xifrat;
+package iticbcn.xifratge;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class XifradorPolialfabetic {
+public class XifradorPolialfabetic implements Xifrador{
     static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÜÚVWXYZÇÑ"; 
     static final char[] ABDARRAY = ABD.toCharArray();
-    private static char[] ArraypPermutada;
+    private char[] ArraypPermutada;
 
-    static Random random;
-    static long clauSecreta = 1234;    
+    Random random;
+    long clauSecreta = 1234;    
 
-    public static String xifraPoliAlfa(String cadena){
+    public String xifraPoliAlfa(String cadena){
         String cifrada = "";
         for(int i = 0; i < cadena.length(); i++){
             boolean EsLetra= false;
@@ -37,7 +37,7 @@ public class XifradorPolialfabetic {
         return cifrada;  
     }
     
-    public static String desxifraPoliAlfa(String cadena){
+    public String desxifraPoliAlfa(String cadena){
         String cifrada = "";
         for(int i = 0; i < cadena.length(); i++){
             boolean EsLetra= false;
@@ -62,12 +62,12 @@ public class XifradorPolialfabetic {
         return cifrada;
     }
 
-    public static void initRandom(long clave){
+    public void initRandom(long clave){
         random = new Random(clave);
     }
 
     // es radom es un parametro del shuffle 
-    public static void permutaAlfabet(){
+    public void permutaAlfabet(){
         List<Character> lista = new ArrayList<>();
         for(char element : ABDARRAY){
             lista.add(element);
@@ -80,5 +80,15 @@ public class XifradorPolialfabetic {
         for(int i = 0; i < ABDARRAY.length; i++){
             ArraypPermutada[i] = lista.get(i);
         }
+    }
+
+    @Override
+    public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'xifra'");
+    }
+
+    @Override
+    public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'desxifra'");
     }
 }

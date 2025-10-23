@@ -1,14 +1,14 @@
-package iticbcn.xifrat;
+package iticbcn.xifratge;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class XifradorMonoalfabetic {
+public class XifradorMonoalfabetic implements Xifrador {
     static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZÇÑ"; 
     static final char[] ABDARRAY = ABD.toCharArray();
-    private static char[] ArraypPermutada;
+    private char[] ArraypPermutada;
      // Para permutar un alfabeto
-    public static char[] permutaAlfabet(char[] alfabeto){
+    public char[] permutaAlfabet(char[] alfabeto){
         List<Character> lista = new ArrayList<>();
         for(char element : alfabeto){
             lista.add(element);
@@ -24,7 +24,7 @@ public class XifradorMonoalfabetic {
         return charPemutado;
     }
     // 
-    public static String xifraMonoAlfa(String cadena){
+    public String xifraMonoAlfa(String cadena){
         String cifrada = "";
         for(int i = 0; i < cadena.length(); i++){
             boolean EsLetra= false;
@@ -48,7 +48,7 @@ public class XifradorMonoalfabetic {
         return cifrada;
     }
     // ABDARRAY // ArraypPermutada
-    public static String desxifraMonoAlfa(String cadena){
+    public String desxifraMonoAlfa(String cadena){
         String cifrada = "";
         for(int i = 0; i < cadena.length(); i++){
             boolean EsLetra= false;
@@ -70,5 +70,13 @@ public class XifradorMonoalfabetic {
             }
         }
         return cifrada;
+    }
+    @Override
+    public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'xifra'");
+    }
+    @Override
+    public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'desxifra'");
     }
 }

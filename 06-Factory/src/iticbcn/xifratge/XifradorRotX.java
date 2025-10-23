@@ -1,17 +1,17 @@
-package iticbcn.xifrat;
+package iticbcn.xifratge;
 
-public class XifradorRotX {
+public class XifradorRotX implements Xifrador{
 
     // Variables globales
     static final String abd = "aàábcdeèéfghiíìjklmnoòópqrstùúvwxyzçñ";
     static final String ABD = "AÀÁBCDEÈÉFGHIÍÌJKLMNOÒÓPQRSTÙÚVWXYZÇÑ";
     static final int numeroMaxCifrado = abd.length();
-    static int contador = 0;
+    int contador = 0;
 
-    static char[] abdArray = abd.toCharArray();
-    static char[] ABDArray = ABD.toCharArray();
+    char[] abdArray = abd.toCharArray();
+    char[] ABDArray = ABD.toCharArray();
     
-    public static String xifratRotX(String cadena, int desplaçament){
+    public  String xifratRotX(String cadena, int desplaçament){
         // Pasar A cifrado
         String cadenaCifradaMin = "";
         for(int i = 0; i < cadena.length(); i++){
@@ -37,7 +37,7 @@ public class XifradorRotX {
         return cadenaCifradaMin;
     }
 
-    public static String desxifratRotX(String cadena, int desplaçament){
+    public String desxifratRotX(String cadena, int desplaçament){
 
         String cadenaCifradaMin = "";
         for(int i = 0; i < cadena.length(); i++){
@@ -63,7 +63,7 @@ public class XifradorRotX {
         return cadenaCifradaMin;
     }
 
-    public static void forcaBrutaRotX(String cadenaXifrada){
+    public void forcaBrutaRotX(String cadenaXifrada){
         String cadenaCifradaMin = "";
         for(int i = 0; i < cadenaXifrada.length(); i++){
             char c = cadenaXifrada.charAt(i);
@@ -93,5 +93,15 @@ public class XifradorRotX {
         }else{
             contador++;
         }
+    }
+
+    @Override
+    public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'xifra'");
+    }
+
+    @Override
+    public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'desxifra'");
     }
 }

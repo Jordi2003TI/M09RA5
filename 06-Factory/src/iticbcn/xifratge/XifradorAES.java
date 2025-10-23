@@ -1,4 +1,4 @@
-package iticbcn.xifrat;
+package iticbcn.xifratge;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.Arrays;
 
-public class XifradorAES {
+public class XifradorAES implements Xifrador{
     
     public static final String ALGORISME_XIFRAT = "AES";
 
@@ -18,13 +18,13 @@ public class XifradorAES {
 
     private static final int MIDA_IV = 16;
 
-    private static byte[] iv = new byte[MIDA_IV];
+    private byte[] iv = new byte[MIDA_IV];
 
     private static final String CLAU = "TienezUnPelasitoDeQuesoNoHeComidoEnDozMinutoz";
 
-    private static IvParameterSpec iSpec;
+    private IvParameterSpec iSpec;
 
-    private static byte[] xifraAES(String msg, String password)throws Exception{
+    private byte[] xifraAES(String msg, String password)throws Exception{
         // Obtenemos los bytes de la String
         byte[] byteMsg = msg.getBytes();
         // Genera IV i part xifrada
@@ -53,7 +53,7 @@ public class XifradorAES {
         return combinar;
     }
 
-    private static String desxifraAES(byte[] bMsgXifrat, String password)throws Exception{
+    private String desxifraAES(byte[] bMsgXifrat, String password)throws Exception{
         if(bMsgXifrat == null || bMsgXifrat.length <= MIDA_IV){
             throw new IllegalArgumentException("Entrada inválida: no contiene IV + datos cifrados");
         }
@@ -79,7 +79,17 @@ public class XifradorAES {
         return new String(descrytado, StandardCharsets.UTF_8);
     }
 
-    private static IvParameterSpec InicializarParameterSpec() throws Exception{
+    private IvParameterSpec InicializarParameterSpec() throws Exception{
     return iSpec = new IvParameterSpec(iv);
+    }
+
+    @Override
+    public TextXifrat xifra(String msg, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'xifra'");
+    }
+
+    @Override
+    public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
+        throw new UnsupportedOperationException("Unimplemented method 'desxifra'");
     }
 }
