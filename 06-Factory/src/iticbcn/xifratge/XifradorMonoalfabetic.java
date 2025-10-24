@@ -96,7 +96,8 @@ public class XifradorMonoalfabetic implements Xifrador {
             throw new ClauNoSuportada("no suporta clau != null");
         }
         try {
-            return desxifraMonoAlfa(new String(xifrat.getBytes(), "UTF-8")); 
+            String resultado = new String(xifrat.getBytes(), "UTF-8");
+            return desxifraMonoAlfa(resultado); 
         } catch (Exception e) {
             throw new RuntimeException(e); 
         }
