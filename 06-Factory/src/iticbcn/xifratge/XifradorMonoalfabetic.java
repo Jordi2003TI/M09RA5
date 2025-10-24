@@ -82,15 +82,23 @@ public class XifradorMonoalfabetic implements Xifrador {
         if (clau != null) {
             throw new ClauNoSuportada("no suporta clau != null");
         }
-
-        String resultado = xifraMonoAlfa(msg);
-        return new TextXifrat(resultado.getBytes());
+        try {
+            String resultado = xifraMonoAlfa(msg);
+            return new TextXifrat(resultado.getBytes("UTF-8")); // <-- UTF-8 explícito
+        } catch (Exception e) {
+            throw new RuntimeException(e); // nunca debería pasar
+        }
     }
+
     @Override
     public String desxifra(TextXifrat xifrat, String clau) throws ClauNoSuportada {
         if (clau != null) {
             throw new ClauNoSuportada("no suporta clau != null");
         }
-        return desxifraMonoAlfa(new String(xifrat.getBytes()));
+        try {
+            return desxifraMonoAlfa(new String(xifrat.getBytes(), "UTF-8")); // <-- UTF-8 explícito
+        } catch (Exception e) {
+            throw new RuntimeException(e); // nunca debería pasar
+        }
     }
 }
