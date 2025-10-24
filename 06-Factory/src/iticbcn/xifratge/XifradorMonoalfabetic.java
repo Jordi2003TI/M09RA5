@@ -84,9 +84,9 @@ public class XifradorMonoalfabetic implements Xifrador {
         }
         try {
             String resultado = xifraMonoAlfa(msg);
-            return new TextXifrat(resultado.getBytes("UTF-8")); // <-- UTF-8 explícito
+            return new TextXifrat(resultado.getBytes("UTF-8")); 
         } catch (Exception e) {
-            throw new RuntimeException(e); // nunca debería pasar
+            throw new RuntimeException(e); 
         }
     }
 
@@ -96,9 +96,9 @@ public class XifradorMonoalfabetic implements Xifrador {
             throw new ClauNoSuportada("no suporta clau != null");
         }
         try {
-            return desxifraMonoAlfa(new String(xifrat.getBytes(), "UTF-8")); // <-- UTF-8 explícito
+            return desxifraMonoAlfa(new String(xifrat.getBytes(), "UTF-8")); 
         } catch (Exception e) {
-            throw new RuntimeException(e); // nunca debería pasar
+            throw new RuntimeException(e); 
         }
     }
 }
