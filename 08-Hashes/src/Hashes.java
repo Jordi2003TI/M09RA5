@@ -170,14 +170,15 @@ public class Hashes {
         return null;
     }
     public String getInterval(long t1, long t2){
-        long diff = t2 - t1;
-        long hours = diff / (1000 * 60 * 60);
-        diff -= hours * (1000 * 60 * 60);
-        long minutes = diff / (1000 * 60);
-        diff -= minutes * (1000 * 60);
-        long seconds = diff / 1000;
-        long millis = diff % 1000;
-        return String.format("%d horas / %d minutes / %d segons / %d millis", hours, minutes, seconds, millis);
+        long t = t2 - t1;
+        long houras = t / (1000 * 60 * 60);
+        t -= houras * (1000 * 60 * 60);
+        long minutos = t / (1000 * 60);
+        t -= minutos * (1000 * 60);
+        long segundos = t / 1000;
+        long millis = t % 1000;
+        long dias = houras /24;
+        return String.format("%d dias / %d horas / %d minutes / %d segons / %d millis", dias ,houras, minutos, segundos, millis);
     }
 
     public boolean comparaHash(String alg, String pwd, String hash, String salt) throws NoSuchAlgorithmException {
