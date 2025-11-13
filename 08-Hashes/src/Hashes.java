@@ -76,69 +76,7 @@ public class Hashes {
     public String forcaBruta(String alg, String hash, String salt) throws NoSuchAlgorithmException{
         final char[] charset = "abcdefABCDEF1234567890!".toCharArray();
         this.npass = 0;
-        for(int i = 0; i < charset.length; i++){
-            String s = "" + charset[i];
-            this.npass++;
-            if (comparaHash(alg, s, hash, salt)) return s;
-        }
-
-        // Lonfitud de 2
-        for (int i0 = 0; i0 < charset.length; i0++) {
-            String s0 = "" + charset[i0];
-            for (int i1 = 0; i1 < charset.length; i1++) {
-                String s1 = s0 + charset[i1];
-                this.npass++;
-                if (comparaHash(alg, s1, hash, salt)) return s1;
-            }
-        }
-
-        // Longitud de 3
-        for (int i0 = 0; i0 < charset.length; i0++) {
-             String s0 = "" + charset[i0];
-            for (int i1 = 0; i1 < charset.length; i1++) {
-                String s1 = s0 + charset[i1];
-                for (int i2 = 0; i2 < charset.length; i2++) {
-                    String s2 = s1 + charset[i2];
-                    this.npass++;
-                    if (comparaHash(alg, s2, hash, salt)) return s2;
-                }
-            }
-        }
-
-        // Longitud de 4
-
-        for (int i0 = 0; i0 < charset.length; i0++) {
-            String s0 = "" + charset[i0];
-            for (int i1 = 0; i1 < charset.length; i1++) {
-                String s1 = s0 + charset[i1];
-                for (int i2 = 0; i2 < charset.length; i2++) {
-                    String s2 = s1 + charset[i2];
-                    for (int i3 = 0; i3 < charset.length; i3++) {
-                        String s3 = s2 + charset[i3];
-                        this.npass++;
-                        if (comparaHash(alg, s3, hash, salt)) return s3;
-                    }
-                }
-            }
-        }
-         // longitud 5
-        for (int i0 = 0; i0 < charset.length; i0++) {
-            String s0 = "" + charset[i0];
-            for (int i1 = 0; i1 < charset.length; i1++) {
-                String s1 = s0 + charset[i1];
-                for (int i2 = 0; i2 < charset.length; i2++) {
-                    String s2 = s1 + charset[i2];
-                    for (int i3 = 0; i3 < charset.length; i3++) {
-                        String s3 = s2 + charset[i3];
-                        for (int i4 = 0; i4 < charset.length; i4++) {
-                            String s4 = s3 + charset[i4];
-                            this.npass++;
-                            if (comparaHash(alg, s4, hash, salt)) return s4;
-                        }
-                    }
-                }
-            }
-        }
+        
         // longitud 6
         for (int i0 = 0; i0 < charset.length; i0++) {
             String s0 = "" + charset[i0];
@@ -160,6 +98,75 @@ public class Hashes {
                 }
             }
         }
+
+        // longitud 5
+        for (int i0 = 0; i0 < charset.length; i0++) {
+            String s0 = "" + charset[i0];
+            for (int i1 = 0; i1 < charset.length; i1++) {
+                String s1 = s0 + charset[i1];
+                for (int i2 = 0; i2 < charset.length; i2++) {
+                    String s2 = s1 + charset[i2];
+                    for (int i3 = 0; i3 < charset.length; i3++) {
+                        String s3 = s2 + charset[i3];
+                        for (int i4 = 0; i4 < charset.length; i4++) {
+                            String s4 = s3 + charset[i4];
+                            this.npass++;
+                            if (comparaHash(alg, s4, hash, salt)) return s4;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Longitud de 4
+
+        for (int i0 = 0; i0 < charset.length; i0++) {
+            String s0 = "" + charset[i0];
+            for (int i1 = 0; i1 < charset.length; i1++) {
+                String s1 = s0 + charset[i1];
+                for (int i2 = 0; i2 < charset.length; i2++) {
+                    String s2 = s1 + charset[i2];
+                    for (int i3 = 0; i3 < charset.length; i3++) {
+                        String s3 = s2 + charset[i3];
+                        this.npass++;
+                        if (comparaHash(alg, s3, hash, salt)) return s3;
+                    }
+                }
+            }
+        }
+
+        // Longitud de 3
+        for (int i0 = 0; i0 < charset.length; i0++) {
+             String s0 = "" + charset[i0];
+            for (int i1 = 0; i1 < charset.length; i1++) {
+                String s1 = s0 + charset[i1];
+                for (int i2 = 0; i2 < charset.length; i2++) {
+                    String s2 = s1 + charset[i2];
+                    this.npass++;
+                    if (comparaHash(alg, s2, hash, salt)) return s2;
+                }
+            }
+        }
+
+        // Lonfitud de 2
+        for (int i0 = 0; i0 < charset.length; i0++) {
+            String s0 = "" + charset[i0];
+            for (int i1 = 0; i1 < charset.length; i1++) {
+                String s1 = s0 + charset[i1];
+                this.npass++;
+                if (comparaHash(alg, s1, hash, salt)) return s1;
+            }
+        }
+        
+        // longitud 1
+        for(int i = 0; i < charset.length; i++){
+            String s = "" + charset[i];
+            this.npass++;
+            if (comparaHash(alg, s, hash, salt)) return s;
+        }
+
+        
+        
         return null;
     }
     public String getInterval(long t1, long t2){
