@@ -74,7 +74,7 @@ public class Hashes {
         }
     }
     public String forcaBruta(String alg, String hash, String salt) throws NoSuchAlgorithmException{
-        final char[] charset = "abcdefABCDEF12345678901".toCharArray();
+        final char[] charset = "abcdefABCDEF1234567890!".toCharArray();
         this.npass = 0;
 
         for(int i = 0; i < charset.length; i++){
