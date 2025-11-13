@@ -76,11 +76,10 @@ public class Hashes {
     public String forcaBruta(String alg, String hash, String salt) throws NoSuchAlgorithmException{
         final char[] charset = "abcdefABCDEF1234567890!".toCharArray();
         this.npass = 0;
-
         for(int i = 0; i < charset.length; i++){
             String s = "" + charset[i];
             this.npass++;
-            if (matchHash(alg, s, hash, salt)) return s;
+            if (comparaHash(alg, s, hash, salt)) return s;
         }
 
         // Lonfitud de 2
@@ -89,7 +88,7 @@ public class Hashes {
             for (int i1 = 0; i1 < charset.length; i1++) {
                 String s1 = s0 + charset[i1];
                 this.npass++;
-                if (matchHash(alg, s1, hash, salt)) return s1;
+                if (comparaHash(alg, s1, hash, salt)) return s1;
             }
         }
 
@@ -101,7 +100,7 @@ public class Hashes {
                 for (int i2 = 0; i2 < charset.length; i2++) {
                     String s2 = s1 + charset[i2];
                     this.npass++;
-                    if (matchHash(alg, s2, hash, salt)) return s2;
+                    if (comparaHash(alg, s2, hash, salt)) return s2;
                 }
             }
         }
@@ -117,7 +116,7 @@ public class Hashes {
                     for (int i3 = 0; i3 < charset.length; i3++) {
                         String s3 = s2 + charset[i3];
                         this.npass++;
-                        if (matchHash(alg, s3, hash, salt)) return s3;
+                        if (comparaHash(alg, s3, hash, salt)) return s3;
                     }
                 }
             }
@@ -134,7 +133,7 @@ public class Hashes {
                         for (int i4 = 0; i4 < charset.length; i4++) {
                             String s4 = s3 + charset[i4];
                             this.npass++;
-                            if (matchHash(alg, s4, hash, salt)) return s4;
+                            if (comparaHash(alg, s4, hash, salt)) return s4;
                         }
                     }
                 }
@@ -154,7 +153,7 @@ public class Hashes {
                             for (int i5 = 0; i5 < charset.length; i5++) {
                                 String s5 = s4 + charset[i5];
                                 this.npass++;
-                                if (matchHash(alg, s5, hash, salt)) return s5;
+                                if (comparaHash(alg, s5, hash, salt)) return s5;
                             }
                         }
                     }
@@ -174,15 +173,15 @@ public class Hashes {
         return String.format("%d horas / %d minutes / %d segons / %d millis", hours, minutes, seconds, millis);
     }
 
-    public boolean matchHash(String alg, String candidate, String targetHash, String salt) throws NoSuchAlgorithmException {
-    String candidateHash;
-    if ("SHA-512".equalsIgnoreCase(alg)) {
-        candidateHash = getSHA512AmbSalt(candidate, salt);
-    } else if ("PBKDF2".equalsIgnoreCase(alg)) {
-        candidateHash = getPBKDF2AmbSalt(candidate, salt);
-    } else {
-        throw new IllegalArgumentException("Algorisme desconegut: " + alg);
+    public boolean comparaHash(String alg, String pwd, String hash, String salt) throws NoSuchAlgorithmException {
+        String pwHash;
+        if ("SHA-512".equalsIgnoreCase(alg)) {
+            pwHash = getSHA512AmbSalt(pwd, salt);
+        } else if ("PBKDF2".equalsIgnoreCase(alg)) {
+            pwHash = getPBKDF2AmbSalt(pwd, salt);
+        } else {
+            throw new IllegalArgumentException("Algorisme desconegut: " + alg);
+        }
+        return pwHash.equalsIgnoreCase(hash);
     }
-    return candidateHash.equalsIgnoreCase(targetHash);
-}
 }
