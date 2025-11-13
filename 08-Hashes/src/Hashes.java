@@ -53,7 +53,7 @@ public class Hashes {
 
     public String getPBKDF2AmbSalt(String pw, String salt){
         try{
-            int iteraciones = 10;
+            int iteraciones = 1000;
             int KeyLengh = 512;
             // Convetimos la contaseña en char 
             char[] pwdChars = pw.toCharArray();
@@ -171,7 +171,7 @@ public class Hashes {
         diff -= minutes * (1000 * 60);
         long seconds = diff / 1000;
         long millis = diff % 1000;
-        return String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, millis);
+        return String.format("%d horas / %d minutes / %d segons / %d millis", hours, minutes, seconds, millis);
     }
 
     public boolean matchHash(String alg, String candidate, String targetHash, String salt) throws NoSuchAlgorithmException {
