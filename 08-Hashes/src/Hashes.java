@@ -53,7 +53,7 @@ public class Hashes {
 
     public String getPBKDF2AmbSalt(String pw, String salt){
         try{
-            int iteraciones = 1000;
+            int iteraciones = 10;
             int KeyLengh = 512;
             // Convetimos la contaseña en char 
             char[] pwdChars = pw.toCharArray();
